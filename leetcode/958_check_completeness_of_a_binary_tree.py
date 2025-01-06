@@ -7,13 +7,13 @@ class Solution:
                 node = queue.popleft()
                 if end and (node.left or node.right):
                     return False
-                elif node.left:
+                if node.left:
                     next_queue.append(node.left)
+                    if node.right:
+                        next_queue.append(node.right)
                 elif node.right:
                     return False
-                if node.right:
-                    next_queue.append(node.right)
-                elif not (node.left and node.right):
+                if not (node.left and node.right):
                     end = True
             queue, next_queue = next_queue, queue
         return True
